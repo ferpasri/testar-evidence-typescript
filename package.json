@@ -1,0 +1,57 @@
+{
+    "name": "testar-evidence",
+    "version": "0.3.0",
+    "description": "Portable test execution evidence for TypeScript and JavaScript.",
+    "type": "module",
+    "license": "BSD-3-Clause",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./node": {
+            "types": "./dist/node/index.d.ts",
+            "import": "./dist/node/index.js"
+        },
+        "./browser": {
+            "types": "./dist/browser/index.d.ts",
+            "import": "./dist/browser/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "docs",
+        "examples",
+        "README.md",
+        "LICENSE",
+        "TODO.md"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "test": "vitest run",
+        "check": "npm run build && npm run typecheck && npm test",
+        "prepare:conformance": "node tools/prepare-conformance.ts",
+        "prepare": "npm run build",
+        "typecheck": "tsc -p tsconfig.test.json",
+        "test:browser": "node tools/check-browser.ts",
+        "example": "node examples/local_trace.ts"
+    },
+    "engines": {
+        "node": ">=24"
+    },
+    "devDependencies": {
+        "@types/node": "26.6.6",
+        "@types/proper-lockfile": "4.1.4",
+        "esbuild": "0.28.2",
+        "fake-indexeddb": "6.2.8",
+        "playwright": "1.65.0",
+        "typescript": "7.0.2",
+        "vitest": "5.1.0"
+    },
+    "dependencies": {
+        "fflate": "0.8.3",
+        "proper-lockfile": "4.1.2"
+    }
+}
